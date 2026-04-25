@@ -1,5 +1,5 @@
 # Build stage
-FROM openjdk:21-jdk-slim AS build
+FROM eclipse-temurin:21-jdk-jammy AS build
 
 # Install Maven
 RUN apt-get update && apt-get install -y maven
@@ -14,7 +14,7 @@ COPY . .
 RUN mvn clean package -Pprod -DskipTests
 
 # Package stage
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jre-jammy
 
 # Set the working directory
 WORKDIR /app
